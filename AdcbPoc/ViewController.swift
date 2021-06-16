@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import AdcbWeb
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+    @IBAction func launchNuclei(_ sender: Any) {
+        do {
+            try AdcbWebLauncher.openAdcbWeb()
+        } catch let error {
+            print(error)
+        }
     }
-
+    
 
 }
-

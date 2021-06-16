@@ -8,22 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		B0BA8B312661420900C18B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8B302661420900C18B44 /* AppDelegate.swift */; };
-		B0BA8B332661420900C18B44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8B322661420900C18B44 /* SceneDelegate.swift */; };
 		B0BA8B352661420900C18B44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8B342661420900C18B44 /* ViewController.swift */; };
 		B0BA8B382661420900C18B44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0BA8B362661420900C18B44 /* Main.storyboard */; };
 		B0BA8B3A2661420A00C18B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0BA8B392661420A00C18B44 /* Assets.xcassets */; };
 		B0BA8B3D2661420A00C18B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0BA8B3B2661420A00C18B44 /* LaunchScreen.storyboard */; };
+		B0BA8BB8266148CC00C18B44 /* AdcbWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BA8BB7266148CC00C18B44 /* AdcbWeb.framework */; };
+		B0BA8BB9266148CC00C18B44 /* AdcbWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B0BA8BB7266148CC00C18B44 /* AdcbWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B0BA8BBA266148CC00C18B44 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B0BA8BB9266148CC00C18B44 /* AdcbWeb.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B0BA8B2D2661420900C18B44 /* AdcbPoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdcbPoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0BA8B302661420900C18B44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B0BA8B322661420900C18B44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B0BA8B342661420900C18B44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B0BA8B372661420900C18B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B0BA8B392661420A00C18B44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0BA8B3C2661420A00C18B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0BA8B3E2661420A00C18B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0BA8BB7266148CC00C18B44 /* AdcbWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdcbWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0BA8BB8266148CC00C18B44 /* AdcbWeb.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +58,7 @@
 			children = (
 				B0BA8B2F2661420900C18B44 /* AdcbPoc */,
 				B0BA8B2E2661420900C18B44 /* Products */,
+				B0BA8BB6266148CC00C18B44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				B0BA8B302661420900C18B44 /* AppDelegate.swift */,
-				B0BA8B322661420900C18B44 /* SceneDelegate.swift */,
 				B0BA8B342661420900C18B44 /* ViewController.swift */,
 				B0BA8B362661420900C18B44 /* Main.storyboard */,
 				B0BA8B392661420A00C18B44 /* Assets.xcassets */,
@@ -65,6 +81,14 @@
 				B0BA8B3E2661420A00C18B44 /* Info.plist */,
 			);
 			path = AdcbPoc;
+			sourceTree = "<group>";
+		};
+		B0BA8BB6266148CC00C18B44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0BA8BB7266148CC00C18B44 /* AdcbWeb.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +101,7 @@
 				B0BA8B292661420900C18B44 /* Sources */,
 				B0BA8B2A2661420900C18B44 /* Frameworks */,
 				B0BA8B2B2661420900C18B44 /* Resources */,
+				B0BA8BBA266148CC00C18B44 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,7 +164,6 @@
 			files = (
 				B0BA8B352661420900C18B44 /* ViewController.swift in Sources */,
 				B0BA8B312661420900C18B44 /* AppDelegate.swift in Sources */,
-				B0BA8B332661420900C18B44 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -287,13 +311,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = Z65RY352B5;
 				INFOPLIST_FILE = AdcbPoc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AdcbPoc;
+				MARKETING_VERSION = 1.5.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gonuclei.ModularApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -306,13 +332,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = Z65RY352B5;
 				INFOPLIST_FILE = AdcbPoc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AdcbPoc;
+				MARKETING_VERSION = 1.5.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gonuclei.ModularApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
