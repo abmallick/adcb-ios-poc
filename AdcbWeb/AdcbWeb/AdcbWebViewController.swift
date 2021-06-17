@@ -8,13 +8,13 @@
 import UIKit
 import WebKit
 
-let retrySeconds = 8
+let retrySeconds = 5
 
 class AdcbWebViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var webView: DWKWebView!
-    var timer = Timer()
+    var timer: Timer?
     var count: Int = retrySeconds //wait for 15secs to reload
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +41,17 @@ class AdcbWebViewController: UIViewController, WKNavigationDelegate {
     func startTimer() {
         loadNuclei()
         self.count = retrySeconds //renew timer count
-        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.update)), userInfo: nil, repeats: true)
+        if timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.update)), userInfo: nil, repeats: true)
+        }
     }
     
     func hideLoader() {
         if (self.webView.estimatedProgress >= 1.0 && JSStateManagement.manager.hideLoader) {
             print("Webview fully loaded!")
             self.activityIndicator.stopAnimating()
-            self.timer.invalidate()
+            timer?.invalidate()
+            timer = nil
         } else {
             print("Webview not fully loaded")
         }
