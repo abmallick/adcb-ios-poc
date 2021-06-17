@@ -8,21 +8,50 @@
 import UIKit
 import WebKit
 
-class AdcbWebViewController: UIViewController {
+let retrySeconds = 8
+
+class AdcbWebViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var webView: DWKWebView!
-    
+    var timer = Timer()
+    var count: Int = retrySeconds //wait for 15secs to reload
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.webView = DWKWebView(frame: self.view.bounds)
+        webView.setDebugMode(true)
         loadNuclei()
         self.webView.navigationDelegate = self
         view.insertSubview(webView, belowSubview: self.activityIndicator)
-        
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
+        startTimer()
+    }
+    
+    @objc func update() {
+        self.count -= 1
+        if JSStateManagement.manager.hideLoader {
+            hideLoader()
+        } else if self.count < 0 {
+            startTimer()
+        }
+    }
+    
+    func startTimer() {
+        loadNuclei()
+        self.count = retrySeconds //renew timer count
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.update)), userInfo: nil, repeats: true)
+    }
+    
+    func hideLoader() {
+        if (self.webView.estimatedProgress >= 1.0 && JSStateManagement.manager.hideLoader) {
+            print("Webview fully loaded!")
+            self.activityIndicator.stopAnimating()
+            self.timer.invalidate()
+        } else {
+            print("Webview not fully loaded")
+        }
     }
     
     private func loadNuclei() {
@@ -34,30 +63,8 @@ class AdcbWebViewController: UIViewController {
                 self.webView?.load(request)
             }
         }
+        
+        hideLoader()
     }
     
-}
-
-extension AdcbWebViewController: WKNavigationDelegate {
-
-
-    func showActivityIndicator(show: Bool) {
-        if show {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
-    }
-
-    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        showActivityIndicator(show: false)
-    }
-
-    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        showActivityIndicator(show: true)
-    }
-
-    public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        showActivityIndicator(show: false)
-    }
 }

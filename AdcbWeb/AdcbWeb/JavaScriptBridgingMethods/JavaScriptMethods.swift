@@ -7,6 +7,21 @@
 
 import Foundation
 
+class JSStateManagement {
+    struct Static {
+        static var instance : JSStateManagement?
+    }
+    
+    class var manager: JSStateManagement {
+        if Static.instance == nil {
+            Static.instance = JSStateManagement()
+        }
+        return Static.instance!
+    }
+    
+    var hideLoader: Bool = false
+}
+
 class JavaScriptMethods: NSObject {
     
     var userInterfaceLayoutDirection: UIUserInterfaceLayoutDirection
@@ -31,7 +46,7 @@ class JavaScriptMethods: NSObject {
     }
     
     @objc func hideLoader(_ arg: String) {
-        print("Native hide loader")
+        JSStateManagement.manager.hideLoader = true
     }
     
 }
