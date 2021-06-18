@@ -314,6 +314,7 @@
 				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = Z65RY352B5;
 				INFOPLIST_FILE = AdcbPoc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,6 +336,7 @@
 				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = Z65RY352B5;
 				INFOPLIST_FILE = AdcbPoc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

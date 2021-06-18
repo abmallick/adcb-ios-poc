@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B093E32A267CA8AA00605F19 /* NucleiWebCallbackConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B093E329267CA8AA00605F19 /* NucleiWebCallbackConfig.swift */; };
 		B0BA8B9E2661457E00C18B44 /* AdcbWeb.h in Headers */ = {isa = PBXBuildFile; fileRef = B0BA8B9C2661457E00C18B44 /* AdcbWeb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0BA8BA7266145AA00C18B44 /* AdcbStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0BA8BA6266145A900C18B44 /* AdcbStoryboard.storyboard */; };
 		B0BA8BAF2661463300C18B44 /* AdcbWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8BAE2661463300C18B44 /* AdcbWebViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B093E329267CA8AA00605F19 /* NucleiWebCallbackConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NucleiWebCallbackConfig.swift; sourceTree = "<group>"; };
 		B0BA8B992661457E00C18B44 /* AdcbWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdcbWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0BA8B9C2661457E00C18B44 /* AdcbWeb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdcbWeb.h; sourceTree = "<group>"; };
 		B0BA8B9D2661457E00C18B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				B0BA8BAE2661463300C18B44 /* AdcbWebViewController.swift */,
 				B0BA8BBB26614A6500C18B44 /* AdcbWebBaseHandler.swift */,
 				B0BA8BC126614D1A00C18B44 /* AdcbWebLauncher.swift */,
+				B093E329267CA8AA00605F19 /* NucleiWebCallbackConfig.swift */,
 			);
 			path = AdcbWeb;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				B0F86669266797BB00075057 /* JSBUtil.m in Sources */,
 				B0F86664266797BB00075057 /* InternalApis.m in Sources */,
 				B0BA8BC226614D1A00C18B44 /* AdcbWebLauncher.swift in Sources */,
+				B093E32A267CA8AA00605F19 /* NucleiWebCallbackConfig.swift in Sources */,
 				B0F86662266797BB00075057 /* DSCallInfo.m in Sources */,
 				B0BA8BAF2661463300C18B44 /* AdcbWebViewController.swift in Sources */,
 				B0BA8BD02661538D00C18B44 /* UIViewController+TopMostViewController.swift in Sources */,
@@ -371,6 +375,7 @@
 				);
 				INFOPLIST_FILE = AdcbWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -401,6 +406,7 @@
 				);
 				INFOPLIST_FILE = AdcbWeb/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

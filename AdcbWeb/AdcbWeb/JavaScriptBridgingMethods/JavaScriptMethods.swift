@@ -35,6 +35,7 @@ class JavaScriptMethods: NSObject {
     
     @objc func onSdkExit(_ arg: String) {
         AdcbWebBaseHandler.manager.close()
+        NucleiConfig.onSdkExit!()
     }
     
     @objc func isRTL(_ arg: String) -> Bool {

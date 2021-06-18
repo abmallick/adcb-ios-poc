@@ -8,25 +8,47 @@
 import UIKit
 import WebKit
 
-let retrySeconds = 5
+let retrySeconds = 5 //wait for 3secs to reload
 
 class AdcbWebViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var webView: DWKWebView!
     var timer: Timer?
-    var count: Int = retrySeconds //wait for 15secs to reload
+    var count: Int = retrySeconds
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 14.0, *) {
+            let configuration = WKWebViewConfiguration()
+            configuration.limitsNavigationsToAppBoundDomains = true
+            self.webView = DWKWebView(frame: self.view.bounds, configuration: configuration)
+        } else {
+            self.webView = DWKWebView(frame: self.view.bounds)
+        }
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
-        self.webView = DWKWebView(frame: self.view.bounds)
         webView.setDebugMode(true)
         loadNuclei()
         self.webView.navigationDelegate = self
         view.insertSubview(webView, belowSubview: self.activityIndicator)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
-        startTimer()
+//        startTimer()
+        loadNuclei()
+    }
+    
+    func waitUntilFullyLoaded(_ completionHandler: @escaping () -> Void) {
+        if (self.webView.estimatedProgress >= 1.0 && JSStateManagement.manager.hideLoader){
+            print("Webview fully loaded!")
+            completionHandler()
+        } else {
+            print("Webview not fully loaded yet....")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                [weak self] in
+                self?.waitUntilFullyLoaded(completionHandler)
+            })
+        }
     }
     
     @objc func update() {
@@ -67,7 +89,10 @@ class AdcbWebViewController: UIViewController, WKNavigationDelegate {
             }
         }
         
-        hideLoader()
+//        hideLoader()
+        waitUntilFullyLoaded { [weak self] in
+            self?.hideLoader()
+        }
     }
     
 }
