@@ -38,6 +38,10 @@ class AdcbWebViewController: UIViewController, WKNavigationDelegate {
         loadNuclei()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.webView.removeJavascriptObject("nuclei")
+    }
+    
     func waitUntilFullyLoaded(_ completionHandler: @escaping () -> Void) {
         if (self.webView.estimatedProgress >= 1.0 && JSStateManagement.manager.hideLoader){
             print("Webview fully loaded!")
@@ -51,22 +55,6 @@ class AdcbWebViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    @objc func update() {
-        self.count -= 1
-        if JSStateManagement.manager.hideLoader {
-            hideLoader()
-        } else if self.count < 0 {
-            startTimer()
-        }
-    }
-    
-    func startTimer() {
-        loadNuclei()
-        self.count = retrySeconds //renew timer count
-        if timer == nil {
-            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.update)), userInfo: nil, repeats: true)
-        }
-    }
     
     func hideLoader() {
         if (self.webView.estimatedProgress >= 1.0 && JSStateManagement.manager.hideLoader) {
@@ -84,12 +72,11 @@ class AdcbWebViewController: UIViewController, WKNavigationDelegate {
             let webUrl = "https://flutter-web-ios.web.app/#/"
             if let urlString = URL(string: webUrl) {
                 let request = URLRequest(url: urlString)
-                self.webView?.addJavascriptObject(JavaScriptMethods(), namespace: nil)
+                self.webView?.addJavascriptObject(JavaScriptMethods(), namespace: "nuclei")
                 self.webView?.load(request)
             }
         }
         
-//        hideLoader()
         waitUntilFullyLoaded { [weak self] in
             self?.hideLoader()
         }
