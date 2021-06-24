@@ -24,24 +24,16 @@ class JSStateManagement {
 
 class JavaScriptMethods: NSObject {
     
-    var userInterfaceLayoutDirection: UIUserInterfaceLayoutDirection
-    {
-        if #available(iOS 9.0, *) {
-            return UIView.userInterfaceLayoutDirection(for: UIView.appearance().semanticContentAttribute)
-        } else {
-            return UIApplication.shared.userInterfaceLayoutDirection
-        }
-    }
-    
     @objc func onSdkExit(_ arg: String) {
         AdcbWebBaseHandler.manager.close()
         NucleiConfig.onSdkExit!()
     }
     
-    @objc func isRTL(_ arg: String) -> Bool {
-        var isRtl: Bool = false
-        if userInterfaceLayoutDirection == .rightToLeft {
-            isRtl = true
+    @objc func isRTL(_ arg: String) -> String {
+        var isRtl: String = "false"
+        let language = Bundle.main.preferredLocalizations.first
+        if (language == "ar") {
+            isRtl = "true"
         }
         return isRtl
     }

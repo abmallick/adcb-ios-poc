@@ -7,10 +7,18 @@
 
 import UIKit
 import WebKit
+import JavaScriptCore
 
 let retrySeconds = 5 //wait for 3secs to reload
 
-class AdcbWebViewController: UIViewController, WKNavigationDelegate {
+class AdcbWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "logHandler" {
+                print("LOG: \(message.body)")
+            }
+    }
+    
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var webView: DWKWebView!
@@ -18,6 +26,16 @@ class AdcbWebViewController: UIViewController, WKNavigationDelegate {
     var count: Int = retrySeconds
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Remove all cache
+        URLCache.shared.removeAllCachedResponses()
+
+        // Delete any associated cookies
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                HTTPCookieStorage.shared.deleteCookie(cookie)
+            }
+        }
         
         if #available(iOS 14.0, *) {
             let configuration = WKWebViewConfiguration()
@@ -28,7 +46,14 @@ class AdcbWebViewController: UIViewController, WKNavigationDelegate {
         }
         
         navigationController?.setNavigationBarHidden(true, animated: true)
-        webView.setDebugMode(true)
+        
+        // Script to Add web logging script
+//        let source = "function captureLog(msg) { window.webkit.messageHandlers.logHandler.postMessage(msg); } window.console.log = captureLog;"
+//        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+//        webView.configuration.userContentController.addUserScript(script)
+        
+        webView.configuration.userContentController.add(self, name: "logHandler")
+        
         loadNuclei()
         self.webView.navigationDelegate = self
         view.insertSubview(webView, belowSubview: self.activityIndicator)
